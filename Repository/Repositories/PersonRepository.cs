@@ -10,8 +10,8 @@ namespace Repository.Repositories
     public class PersonRepository : RepositoryBase<Person>,
          IPersonRepository
     {
-        public PersonRepository(PersonDbContext companyEmployeeDbContext)
-            : base(companyEmployeeDbContext)
+        public PersonRepository(PersonDbContext personDbContext)
+            : base(personDbContext)
         {
 
         }
@@ -20,5 +20,11 @@ namespace Repository.Repositories
         FindAll(trackChanges)
             .OrderBy(c => c.Name)
             .ToList();
+
+        public Person GetPersonByPhoneNumber(bool trackChanges, string phoneNumber) =>
+            FindByCondition(x => x.Phone == phoneNumber, trackChanges).FirstOrDefault();
+
+        public Person GetPhoneNumberByName(bool trackChanges, string name) =>
+            FindByCondition(x => x.Name == name, trackChanges).FirstOrDefault();
     }
 }

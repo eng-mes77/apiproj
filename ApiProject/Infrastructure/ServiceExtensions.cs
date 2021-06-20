@@ -1,7 +1,6 @@
 ﻿using Contracts.IServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using LoggerService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +27,6 @@ namespace SampleApp.Infrastructure.Extensions
             });
         }
         public static void ConfigureIISIntegration(this IServiceCollection services) => services.Configure<IISOptions>(options => { });
-        public static void ConfigureLoggerService(this IServiceCollection services) => services.AddScoped<ILoggerManager, LoggerManager>();
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
             => services.AddDbContext<PersonDbContext>((opts) =>
              opts.UseNpgsql(configuration.GetConnectionString("npgConnection")));

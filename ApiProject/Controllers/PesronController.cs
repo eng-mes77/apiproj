@@ -1,6 +1,6 @@
 ﻿using Contracts.IServices;
 using Entities;
-using LoggerService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,16 +14,30 @@ namespace ApiProject.Controllers
     public class PesronController : Controller
     {
         private protected IRepositoryManager _repositoryManager;
-        private protected ILoggerManager _logger;
-        public PesronController(Contracts.IServices.IRepositoryManager repositoryManager, ILoggerManager loggerManager)
+        public PesronController(Contracts.IServices.IRepositoryManager repositoryManager)
         {
             _repositoryManager = repositoryManager;
         }
-        [HttpGet]
-        public IEnumerable<Person> Get()
+        [Consumes("application/xml")]
+        [HttpPost]
+        public ActionResult<Person> NameByPhoneNumber([FromBody] Phone phoneNumber)
         {
-            var persons = _repositoryManager.person.GetAllPersons(false);
-            return persons;
+            try
+            {
+                var person = _repositoryManager.person.GetPersonByPhoneNumber(trackChanges: false, phoneNumber.phoneNumber);
+                return person;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
+
+        //[HttpPost]
+        //public ActionResult<string> PhoneByPersonName([FromBody] string personName)
+        //{
+        //    var phoneNumber = _repositoryManager.person.GetPhoneNumberByName(trackChanges: false, personName).Phone;
+        //    return phoneNumber;
+        //}
     }
 }
