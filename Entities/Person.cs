@@ -7,7 +7,7 @@ namespace Entities
     public class Person
     {
         [Column("PersonId")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Person name is a required field.")]
         [MaxLength(60, ErrorMessage = "Maximum length for the Name is 60 characters.")]
         public string Name { get; set; }

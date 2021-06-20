@@ -16,9 +16,8 @@ namespace ApiProject.Controllers
         private protected IRepositoryManager _repositoryManager;
         private protected ILoggerManager _logger;
         public PesronController(Contracts.IServices.IRepositoryManager repositoryManager, ILoggerManager loggerManager)
-
         {
-
+            _repositoryManager = repositoryManager;
         }
         [HttpGet]
         public IEnumerable<Person> Get()

@@ -31,7 +31,7 @@ namespace SampleApp.Infrastructure.Extensions
         public static void ConfigureLoggerService(this IServiceCollection services) => services.AddScoped<ILoggerManager, LoggerManager>();
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
             => services.AddDbContext<PersonDbContext>((opts) =>
-             opts.UseNpgsql(configuration.GetConnectionString("npgConnection"), b => b.MigrationsAssembly("ApiProject")));
+             opts.UseNpgsql(configuration.GetConnectionString("npgConnection")));
         public static void ConfigureRepositoryManager(this IServiceCollection services) => services.AddScoped<IRepositoryManager, RepositoryManager>();
 
     }
