@@ -29,7 +29,7 @@ namespace ApiProject.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError,"InternalError");
             }
         }
     }
