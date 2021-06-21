@@ -15,7 +15,6 @@ namespace Entities
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new PersonConfiguration());
         }
         public DbSet<Person> Persons { get; set; }
     }

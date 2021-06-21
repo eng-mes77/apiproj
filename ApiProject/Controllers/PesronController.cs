@@ -32,12 +32,5 @@ namespace ApiProject.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-
-        //[HttpPost]
-        //public ActionResult<string> PhoneByPersonName([FromBody] string personName)
-        //{
-        //    var phoneNumber = _repositoryManager.person.GetPhoneNumberByName(trackChanges: false, personName).Phone;
-        //    return phoneNumber;
-        //}
     }
 }
